@@ -2,7 +2,7 @@
 {
     static class Task1
     {
-        public static double[,] ReadMatrix(int n)
+        public static double[,] ReadMatrix(int n, bool ignoreValidation = false)
         {
             double[,] p = new double[n, n];
             for (int i = 0; i < n; i++)
@@ -13,7 +13,7 @@
                     p[i, j] = double.Parse(Console.ReadLine());
                 }
             }
-            if (Math.Round(p.Cast<double>().Sum(), 3) != 1)
+            if (Math.Round(p.Cast<double>().Sum(), 3) != 1 && !ignoreValidation)
             {
                 throw new Exception("The sum of the elements of the matrix must be equal to 1");
             }
@@ -31,12 +31,16 @@
                 Console.WriteLine();
             }
         }
-        public static double GetEntrop1D(double[] p)
+        public static double GetEntrop1D(double[] p, bool ignoreRound = false)
         {
             double entrop = 0;
             for (int i = 0; i < p.Length; i++)
             {
                 entrop += p[i] * Math.Log2(p[i]);
+            }
+            if (ignoreRound)
+            {
+                return -entrop;
             }
             return -Math.Round(entrop, 3);
         }
