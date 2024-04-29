@@ -125,10 +125,18 @@
             {
                 HYx1 += q[0, i] * Math.Log2(q[0, i]);
             }
-            return Math.Round(v * (1 + HYx1), 3);
+            return Math.Round(v * (Math.Log2(p.GetLength(0)) + HYx1), 3);
         }
         public static void ExecuteTask1()
         {
+            Console.Clear();
+            Console.WriteLine("Task 1");
+            Console.WriteLine("Press Enter to Execute or Esc to skip...");
+            ConsoleKeyInfo key = Console.ReadKey();
+            if (key.Key == ConsoleKey.Escape)
+            {
+                return;
+            }
             int n;
             while (true)
             {

@@ -22,6 +22,14 @@ namespace Lab_2
         {
             Console.Clear();
             Console.WriteLine("Task 2");
+            Console.WriteLine("Press Enter to Execute or Esc to skip...");
+            ConsoleKeyInfo key = Console.ReadKey();
+            if (key.Key == ConsoleKey.Escape)
+            {
+                return;
+            }
+            Console.Clear();
+            Console.WriteLine("Task 2");
             Console.Write("Enter the p: ");
             double p = double.Parse(Console.ReadLine());
             Console.Write("Enter the q: ");

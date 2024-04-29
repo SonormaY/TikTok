@@ -24,7 +24,6 @@ namespace Lab_2
                 {
                     HYx[i] += -PYX[i, j] * Math.Log2(PYX[i, j]);
                 }
-                HYx[i] = HYx[i];
             }
             return HYx;
         }
@@ -62,8 +61,7 @@ namespace Lab_2
                 }
                 px[0] += step;
                 px[0] = Math.Round(px[0], 3);
-                px[1] = 1 - px[0];
-                px[1] = Math.Round(px[1], 3);
+                px[1] = Math.Round(1 - px[0], 3);
             }
             Console.WriteLine($"\nMax bandwidth: {maxBandwidth} at p(x1) = {pxOfMaxBandwidth}");
             Console.WriteLine("Press any key to continue...");
@@ -76,13 +74,20 @@ namespace Lab_2
                 case 0.001:
                     break;
                 default:
-                MaxBandwidth(PYX, T, pxOfMaxBandwidth - step, pxOfMaxBandwidth + step, step / 10);
-                break;
-        
+                    MaxBandwidth(PYX, T, pxOfMaxBandwidth - step, pxOfMaxBandwidth + step, step / 10);
+                    break;
             }
         }
         public static void ExecuteTask3()
         {
+            Console.Clear();
+            Console.WriteLine("Task 3");
+            Console.WriteLine("Press Enter to Execute or Esc to skip...");
+            ConsoleKeyInfo key = Console.ReadKey();
+            if (key.Key == ConsoleKey.Escape)
+            {
+                return;
+            }
             Console.Clear();
             double[,] PYX = new double[2, 2];
             while (true)
@@ -109,7 +114,7 @@ namespace Lab_2
                 {
                     Console.Clear();
                     Console.WriteLine("Enter the T:");
-                    T = double.Parse(Console.ReadLine());
+                    T = double.Parse(Console.ReadLine() ?? throw new InvalidOperationException());
                     if (T < 0)
                     {
                         throw new Exception();
